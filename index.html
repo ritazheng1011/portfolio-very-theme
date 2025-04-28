@@ -1,131 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="Description" content="Demonstration for portfolio-very-theme" />
 
-<head>
-  <base href="/">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Demonstration for portfolio-very-theme">
+    <style>
+      :root,
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: var(--ddd-theme-default-white, #fff);
+      }
+      header {
+        display: flex;
+        align-items: center;
+        background-color: var(--ddd-primary-1, #1c2d5a);
+        padding: 1rem;
+        color: white;
+      }
+      header img {
+        width: 50px;
+        height: 50px;
+        margin-right: 1rem;
+      }
+      header h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+      nav {
+        background-color: var(--ddd-primary-2, #11204d);
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 2rem;
+        align-items: center;
+        font-size: 0.9rem;
+      }
+      .nav-center {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-center a,
+      .nav-right a {
+        color: white;
+        text-decoration: none;
+      }
+      portfolio-very-theme {
+        margin-top: 0;
+        scroll-snap-type: y mandatory;
+      }
+      .screen-content {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+      }
+    </style>
+  </head>
 
-  <style>
-    :root, html, body {
-      margin: 0;
-      padding: 0;
-    }
-    #demo {
-      margin: var(--ddd-spacing-2);
-    }
-    portfolio-very-theme {
-      margin: var(--ddd-spacing-2);
-      border: var(--ddd-border-md);
-      border-radius: var(--ddd-radius-lg);
-    }
-    portfolio-very-theme:hover {
-      box-shadow: var(--ddd-boxShadow-sm);
-    }
-    #example {
-      --portfolio-very-theme-font-size: var(--ddd-font-size-l);
-      background-color: var(--ddd-accent-2);
-      color: var(--ddd-primary-17);
-    }
-  </style>
-  <title>portfolio-very-theme</title>
-</head>
+  <body>
+    <hax-app>
+      <header>
+        <h1>Portfolio</h1>
+      </header>
 
-<body>
-  <div id="demo">
-    <h1>portfolio-very-theme</h1>
-    <!-- this is going to do whatever the tag's defaults are -->
-    <h2>Default</h2>
-    <portfolio-very-theme></portfolio-very-theme>
-    <h2>Slot usage</h2>
-    <portfolio-very-theme data-accent="2" data-primary="17"><div>Sample slot content</div></portfolio-very-theme>
-    <h2>Property usage</h2>
-    <portfolio-very-theme id="example" title="Sample property title"></portfolio-very-theme>
-  </div>
-  <script type="module" src="./portfolio-very-theme.js"></script>
+      <nav>
+        <div class="nav-center">
+          <a href="#screen-1">About</a>
+          <a href="#screen-2">Research</a>
+          <a href="#screen-3">Presentations & Publications</a>
+          <a href="#screen-4">Professional Development</a>
+        </div>
+        <div class="nav-right">
+          <a href="#screen-5">Contact</a>
+        </div>
+      </nav>
 
-  <!-- Take HAX, the Web and you further down the rabbit hole -->
-  <style>
-    #follow-the-white-rabbit {
-      margin: var(--ddd-spacing-4) auto 64px  16px;
-      background-color: var(--ddd-accent-4);
-      color: black;
-    }
-    #follow-the-white-rabbit[open] summary {
-      background-color: var(--ddd-accent-4) !important;
-      color: black;
-    }
-    #follow-the-white-rabbit[open] .content {
-      padding: 0 var(--ddd-spacing-4);
-    }
-    #follow-the-white-rabbit ul,
-    #follow-the-white-rabbit li {
-      padding: 0;
-      margin: 0;
-    }
-    #follow-the-white-rabbit li {
-      font-size: var(--ddd-font-size-xs);
-      list-style: none;
-    }
-    #follow-the-white-rabbit li strong,
-    #follow-the-white-rabbit li a {
-      padding: var(--ddd-spacing-2) var(--ddd-spacing-4);
-      color: black;
-      display: block;
-      font-weight: bold;
-    }
-    #follow-the-white-rabbit li:focus-within a,
-    #follow-the-white-rabbit li:hover a {
-      background-color: black;
-      color: yellow;
-    }
-  </style>
-  <details id="follow-the-white-rabbit" open>
-    <summary>How to Develop</summary>
-    <div class="content">
-      <p>
-      
-        <strong>Checkout project on github:</strong> <a href="https://github.com/ritazheng1011/portfolio-very-theme" target="_blank" rel="nofollow">ritazheng1011/portfolio-very-theme</a>
-        
-      </p>
-      <p>
-        You can edit the current page by modifying <code>index.html</code><br />
-        To edit your <strong>portfolio-very-theme</strong> tag, modify <code>src/portfolio-very-theme.js</code>.
-        This file contains all the HTML, CSS and JavaScript used to render your elements above!
-      </p>
-      <p>
-        Web components are easy to follow once you get used to their pattern.
-        Below are links to help on your journey. Good luck, we need you!
-      </p>
-      <ul>
-        <li><a href="https://haxtheweb.org/documentation/ddd" target="_blank">🧑‍🎨 Learn DDD HAX Design system</a></li>
-        <li><a href="https://lit.dev/playground/" target="_blank" rel="nofollow">🔥 Learn Lit</a></li>
-        <li><a href="https://hax.psu.edu" target="_blank">🧙 HAX The Web @ Penn State</a></li>
-      </ul>
-      <h2>Join and Share HAX</h2>
-      <ul>
-        <li><a href="https://github.com/haxtheweb/issues/issues" target="_blank" rel="nofollow">🔮 Ideas to HAX Harder, Better, Faster, Stronger</a></li>
-        <li><a href="https://bit.ly/hax-the-linkedin" target="_blank" rel="nofollow">👔 Share on LinkedIn</a></li>
-        <li><a href="https://bit.ly/hax-the-x" target="_blank" rel="nofollow">🧵 Tweet on X</a></li>
-        <li><a href="https://bit.ly/hax-discord" target="_blank" rel="nofollow">💬 Join Community</a></li>
-      </ul>
-      <h2>Learn the languages and tools</h2>
-      <ul>
-        <li><a href="https://w3schools.com" target="_blank" rel="nofollow">🌐 Learn HTML</a></li>
-        <li><a href="https://web.dev/learn/css/" target="_blank" rel="nofollow">🎨 Learn CSS</a></li>
-        <li><a href="http://Javascript.info" target="_blank" rel="nofollow">💻 Learn JavaScript (JS)</a></li>
-        <li><a href="https://gitimmersion.com" target="_blank" rel="nofollow">🦺 Learn Git / Github</a></li>
-        <li><a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/" target="_blank" rel="nofollow">📦 Learn NPM</a></li>
-        <li><a href="http://learnux.io" target="_blank" rel="nofollow">📐 Learn UX / UI development</a></li>
-      </ul>
-      <h2>Find purpose and inspiration</h2>
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=eC7xzavzEKY" target="_blank" rel="nofollow">🐟 This is Water - David Foster Wallace</a></li>
-        <li><a href="https://www.youtube.com/watch?v=kYfNvmF0Bqw" target="_blank" rel="nofollow">🏗️ Secrets of Life - Steve Jobs</a></li>
-        <li><strong>💡 <em>Never. Stop. Innovating.</em></strong></li>
-      </ul>
-    </div>
-  </details>
-</body>
+      <portfolio-very-theme>
+        <portfolio-screen id="screen-1" title="About" accent="1">
+          <div class="screen-content">About</div>
+        </portfolio-screen>
+
+        <portfolio-screen id="screen-2" title="Research" accent="2">
+          <div class="screen-content">Research</div>
+        </portfolio-screen>
+
+        <portfolio-screen
+          id="screen-3"
+          title="Presentations & Publications"
+          accent="3"
+        >
+          <div class="screen-content">Presentations & Publications</div>
+        </portfolio-screen>
+
+        <portfolio-screen
+          id="screen-4"
+          title="Professional Development"
+          accent="4"
+        >
+          <div class="screen-content">Professional Development</div>
+        </portfolio-screen>
+
+        <portfolio-screen id="screen-5" title="Contact" accent="5">
+          <div class="screen-content">Contact</div>
+        </portfolio-screen>
+      </portfolio-very-theme>
+    </hax-app>
+  </body>
 </html>
