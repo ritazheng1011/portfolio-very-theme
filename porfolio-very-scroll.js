@@ -34,13 +34,13 @@ export class PortfolioVeryScroll extends DDDSuper(I18NMixin(LitElement)) {
           margin: var(--ddd-spacing-3);
           padding: var(--ddd-spacing-4);
           background-color: var(--ddd-theme-accent);
-          border-radius: 8px;
+          border-radius: var(--ddd-radius-sm);
         }
 
         h3 {
-          margin-top: 0;
+          margin-top: var(--ddd-spacing-0);
           font-size: var(--ddd-font-size-l);
-          font-weight: bold;
+          font-weight: var(--ddd-font-weight-bold);
         }
 
         h3 span {

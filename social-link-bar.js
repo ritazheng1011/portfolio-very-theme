@@ -13,14 +13,14 @@ export class SocialLinkBar extends LitElement {
       .bar {
         display: flex;
         justify-content: center;
-        gap: 1rem;
-        margin-top: 1rem;
+        gap: var(--ddd-spacing-4);
+        margin-top: var(--ddd-spacing-4);
       }
       a {
         color: var(--ddd-theme-primary, #1a73e8);
         text-decoration: none;
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: var(--ddd-font-size-m);
+        font-weight: var(--ddd-font-weight-bold);
         transition: opacity 0.2s;
       }
       a:hover {
