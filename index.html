@@ -14,106 +14,215 @@
       html,
       body {
         margin: 0;
-        padding: 0;
+        font-family: var(--ddd-font-base, sans-serif);
+        scroll-behavior: smooth;
+        background-color: var(--ddd-theme-default-navy, #060036);
+        color: var(--ddd-theme-default-white, #fff);
+        padding-top: 100px;
       }
-      body {
-        font-family: Arial, sans-serif;
-        background-color: var(--ddd-theme-default-white, #fff);
-      }
-      header {
-        display: flex;
-        align-items: center;
-        background-color: var(--ddd-primary-1, #1c2d5a);
-        padding: 1rem;
-        color: white;
-      }
-      header img {
-        width: 50px;
-        height: 50px;
-        margin-right: 1rem;
-      }
-      header h1 {
-        font-size: 2rem;
+
+      h2 {
+        scroll-margin-top: 120px;
         margin: 0;
+        padding: 1.5rem;
+        font-size: var(--ddd-font-size-xl);
       }
-      nav {
-        background-color: var(--ddd-primary-2, #11204d);
+
+      .about-content {
         display: flex;
-        justify-content: space-between;
-        padding: 0.5rem 2rem;
         align-items: center;
-        font-size: 0.9rem;
-      }
-      .nav-center {
-        display: flex;
-        gap: 2rem;
-      }
-      .nav-center a,
-      .nav-right a {
-        color: white;
-        text-decoration: none;
-      }
-      portfolio-very-theme {
-        margin-top: 0;
-        scroll-snap-type: y mandatory;
-      }
-      .screen-content {
-        height: 100vh;
-        display: flex;
         justify-content: center;
+        gap: 2rem;
+        padding: var(--ddd-spacing-5);
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .profile-pic {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 4px solid var(--ddd-theme-primary);
+        object-fit: cover;
+      }
+
+      .resume-pic {
+        width: 300px;
+        height: auto;
+        border: 4px solid var(--ddd-theme-primary);
+        margin-bottom: 1rem;
+      }
+
+      .resume-bio {
+        max-width: 600px;
+        text-align: left;
+        font-size: var(--ddd-spacing-4);
+        line-height: 1.6;
+      }
+
+      .bio-text {
+        max-width: 600px;
+        text-align: left;
+        font-size: var(--ddd-spacing-4);
+        line-height: 1.6;
+      }
+
+      .resume,
+      .experience,
+      .projects {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        font-size: 2rem;
+        justify-content: center;
+        padding: var(--ddd-spacing-5);
+        max-width: 800px;
+        margin: auto;
+        font-size: var(--ddd-spacing-4);
+        line-height: 1.6;
+      }
+
+      .contact-info {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-info p {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0.5rem 0;
+      }
+
+      .resume a {
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+
+      @media (max-width: 768px) {
+        .about-content {
+          flex-direction: column;
+        }
+        .profile-pic {
+          width: 200px;
+          height: 200px;
+        }
+        .bio-text {
+          text-align: center;
+        }
       }
     </style>
   </head>
 
   <body>
-    <hax-app>
-      <header>
-        <h1>Portfolio</h1>
-      </header>
+    <portfolio-very-header></portfolio-very-header>
 
-      <nav>
-        <div class="nav-center">
-          <a href="#screen-1">About</a>
-          <a href="#screen-2">Research</a>
-          <a href="#screen-3">Presentations & Publications</a>
-          <a href="#screen-4">Professional Development</a>
+    <portfolio-very-theme>
+      <portfolio-very-screen>
+        <h2 id="1">About</h2>
+        <div class="about-content">
+          <img src="headshot.jpg" alt="Rita Zheng" class="profile-pic" />
+          <div class="bio-text">
+            <p>
+              Hi! My name is Rita Zheng. I'm a second-year student at Penn State
+              studying Human-Centered Design & Development. I'm passionate about
+              UI/UX and creating user-friendly and visually appealing designs. I
+              have experience in various design tools and programming languages,
+              and I'm exited and open to learn more.
+            </p>
+            <language-list></language-list>
+          </div>
         </div>
-        <div class="nav-right">
-          <a href="#screen-5">Contact</a>
+      </portfolio-very-screen>
+
+      <portfolio-very-screen>
+        <h2 id="2">Resume</h2>
+        <div class="resume">
+          <img
+            src="ritazheng-resume.jpg"
+            alt="Rita Zheng Resume"
+            class="resume-pic"
+          />
+          <a
+            href="ritazheng-resume.jpg"
+            target="_blank"
+            style="color: var(--ddd-theme-accent); font-weight: bold"
+          >
+            View Resume
+          </a>
+          <p>
+            I'm a second-year student at Penn State studying Human-Centered
+            Design & Development with a minor Information Systems Management. I
+            have strong skills in web development, with experience in programs
+            such as Figma, VSCode, and Miro. I have customer service experience
+            from working as a cashier at China King Restaurant, learning how to
+            communicate effectively with customers and handle transactions. On
+            campus, I am very involved in the Asian Student Association as the
+            Graphics Chair, where I create graphics, social media posts, and
+            merchandise designs.
+          </p>
         </div>
-      </nav>
+      </portfolio-very-screen>
 
-      <portfolio-very-theme>
-        <portfolio-screen id="screen-1" title="About" accent="1">
-          <div class="screen-content">About</div>
-        </portfolio-screen>
+      <portfolio-very-screen>
+        <h2 id="3">Professional Experience</h2>
+        <div class="experience">
+          <ul>
+            <li>
+              Graphics Chair – Asian Student Association @ Penn State, Fall 2024
+            </li>
+            <li>
+              Mentor – Society of Asian Scientists and Engineers, Fall 2024
+            </li>
+            <li>Cashier – China King Restaurant, November 2022</li>
+          </ul>
+        </div>
+      </portfolio-very-screen>
 
-        <portfolio-screen id="screen-2" title="Research" accent="2">
-          <div class="screen-content">Research</div>
-        </portfolio-screen>
+      <portfolio-very-screen>
+        <h2 id="4">Projects</h2>
+        <div class="projects">
+          <p>Mixology: Mock-up/Prototype for mixed drink app. [Figma, Miro]</p>
+          <p>
+            RPG Character: Unique updated RPG characters for Github Repos.
+            [VSCode, JS, HTML, CSS]
+          </p>
+          <a
+            href="https://rpg-character-peach.vercel.app/"
+            target="_blank"
+            rel="noopener"
+          >
+            RPG Project
+          </a>
+        </div>
+      </portfolio-very-screen>
 
-        <portfolio-screen
-          id="screen-3"
-          title="Presentations & Publications"
-          accent="3"
-        >
-          <div class="screen-content">Presentations & Publications</div>
-        </portfolio-screen>
+      <portfolio-very-screen>
+        <h2 id="5">Contact</h2>
+        <div class="projects">
+          <p>You can reach me through the following platforms:</p>
+          <div class="contact-info">
+            <p>Email: ritazheng1011@gmail.com</p>
+            <p>Phone #: 215-596-9879</p>
+          </div>
+          <social-link-bar>
+            <a href="https://github.com/ritazheng1011" target="_blank"
+              >GitHub</a
+            >
+            <a href="https://linkedin.com/in/ritazheng1011" target="_blank"
+              >LinkedIn</a
+            >
+          </social-link-bar>
+        </div>
+      </portfolio-very-screen>
+    </portfolio-very-theme>
 
-        <portfolio-screen
-          id="screen-4"
-          title="Professional Development"
-          accent="4"
-        >
-          <div class="screen-content">Professional Development</div>
-        </portfolio-screen>
-
-        <portfolio-screen id="screen-5" title="Contact" accent="5">
-          <div class="screen-content">Contact</div>
-        </portfolio-screen>
-      </portfolio-very-theme>
-    </hax-app>
+    <script type="module" src="./portfolio-very-theme.js"></script>
+    <script type="module" src="./portfolio-very-header.js"></script>
+    <script type="module" src="./portfolio-very-screen.js"></script>
+    <script type="module" src="./social-link-bar.js"></script>
+    <script type="module" src="./language-list.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@haxtheweb/scroll-button/scroll-button.js"
+    ></script>
   </body>
 </html>
