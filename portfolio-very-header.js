@@ -50,7 +50,7 @@ export class PortfolioVeryHeader extends DDDSuper(I18NMixin(LitElement)) {
         }
 
         .wrapper {
-          margin-top: 200px;
+          margin-top: -60px;
         }
       `,
     ];
