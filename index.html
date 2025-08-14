@@ -10,17 +10,27 @@
     <meta name="Description" content="Demonstration for portfolio-very-theme" />
 
     <style>
+
+:root {
+    --header-h: 64px; /* adjust to match actual header height */
+  }
+      
       :root,
-      html,
       body {
         margin: 0;
-        font-family: var(--ddd-font-base, sans-serif);
+        font-family: var(
+          --ddd-font-base,
+          "Helvetica Neue",
+          Helvetica,
+          Arial,
+          sans-serif
+        );
+        font-size: var(--ddd-font-size-md, 16px);
         scroll-behavior: smooth;
-        background-color: var(--ddd-theme-default-navy, #060036);
-        color: var(--ddd-theme-default-white, #fff);
+        background-color: #ffe6f0; /* light blush pink */
+        color: #2b2b2b; /* dark gray text */
         padding-top: 100px;
       }
-
       h2 {
         scroll-margin-top: 120px;
         margin: 0;
@@ -68,8 +78,7 @@
       }
 
       .resume,
-      .experience,
-      .projects {
+      .experience {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -81,7 +90,8 @@
         line-height: 1.6;
       }
 
-      .contact-info {
+      .contact-info,
+      .projects {
         text-align: center;
         margin-bottom: 1.5rem;
       }
@@ -118,15 +128,23 @@
     <portfolio-very-theme>
       <portfolio-very-screen>
         <h2 id="1">About</h2>
+        <br></br/>
+        <br></br/>
         <div class="about-content">
           <img src="headshot.jpg" alt="Rita Zheng" class="profile-pic" />
           <div class="bio-text">
             <p>
-              Hi! My name is Rita Zheng. I'm a second-year student at Penn State
+              Hi! My name is Rita Zheng. I'm a third-year student at Penn State
               studying Human-Centered Design & Development. I'm passionate about
               UI/UX and creating user-friendly and visually appealing designs. I
               have experience in various design tools and programming languages,
-              and I'm exited and open to learn more.
+              and I'm excited and open to learn more!
+            </p>
+            <p>
+              I enjoy volunteering on campus and finding ways to give
+              back to my community. I also love playing video games and exploring the
+              latest in technology trends. One of my favorite projects was building my
+              own PC, which sparked a deeper interest in hardware and problem-solving.
             </p>
             <language-list></language-list>
           </div>
@@ -137,42 +155,46 @@
         <h2 id="2">Resume</h2>
         <div class="resume">
           <img
-            src="ritazheng-resume.jpg"
+            src="./resume-AUG2025.jpg"
             alt="Rita Zheng Resume"
             class="resume-pic"
           />
           <a
-            href="ritazheng-resume.jpg"
+            href="./resume-AUG2025.jpg"
             target="_blank"
             style="color: var(--ddd-theme-accent); font-weight: bold"
           >
             View Resume
           </a>
           <p>
-            I'm a second-year student at Penn State studying Human-Centered
-            Design & Development with a minor Information Systems Management. I
-            have strong skills in web development, with experience in programs
-            such as Figma, VSCode, and Miro. I have customer service experience
-            from working as a cashier at China King Restaurant, learning how to
-            communicate effectively with customers and handle transactions. On
-            campus, I am very involved in the Asian Student Association as the
-            Graphics Chair, where I create graphics, social media posts, and
-            merchandise designs.
+            This past summer, I worked as an IT intern at David’s Bridal, where I got
+            hands-on experience in IT development, web operations, troubleshooting, and
+            supporting a variety of technical projects. I had the opportunity to work
+            closely with cross-functional teams to improve system performance and create
+            a better user experience, which gave me a deeper understanding of the IT
+            industry and helped me grow my problem-solving skills.
           </p>
+  
         </div>
       </portfolio-very-screen>
 
       <portfolio-very-screen>
         <h2 id="3">Professional Experience</h2>
         <div class="experience">
+          <br></br/>
           <ul>
             <li>
-              Graphics Chair – Asian Student Association @ Penn State, Fall 2024
+              <strong>IT Intern – Web Operations, David’s Bridal Inc. (June 2025 – September 2025)</strong> – Assisted with website operations, content updates, and quality checks to help ensure a smooth online shopping experience.
             </li>
             <li>
-              Mentor – Society of Asian Scientists and Engineers, Fall 2024
+              <strong>Graphics Chair – Asian Student Association @ Penn State (April 2024 – Present)</strong> – Created event graphics, promotional materials, and social media content to support club activities and outreach.
             </li>
-            <li>Cashier – China King Restaurant, November 2022</li>
+            <li>
+              <strong>Mentor – Society of Asian Scientists and Engineers @ Penn State (September 2024 – May 2025)</strong> – Provided guidance to student members through career advice, academic tips, and peer support.
+            </li>
+            <li>
+              <strong>Cashier – China King Restaurant (November 2022 – August 2024)</strong> – Helped customers with orders, managed transactions, and worked with team members to keep operations running smoothly.
+            </li>
           </ul>
         </div>
       </portfolio-very-screen>
@@ -180,7 +202,18 @@
       <portfolio-very-screen>
         <h2 id="4">Projects</h2>
         <div class="projects">
-          <p>Mixology: Mock-up/Prototype for mixed drink app. [Figma, Miro]</p>
+          <br></br/>
+          <br></br/>
+          <br></br/>
+        
+          <p>
+            Mixology: Mock-up/Prototype for mixed drink app. [Figma, Miro, Java]
+          </p>
+          <p></p>
+          <p>
+            Home Services: Mock-up/Prototype for home improvement services app.
+            [Figma, Miro]
+          </p>
           <p>
             RPG Character: Unique updated RPG characters for Github Repos.
             [VSCode, JS, HTML, CSS]
@@ -198,10 +231,10 @@
       <portfolio-very-screen>
         <h2 id="5">Contact</h2>
         <div class="projects">
-          <p>You can reach me through the following platforms:</p>
           <div class="contact-info">
-            <p>Email: ritazheng1011@gmail.com</p>
-            <p>Phone #: 215-596-9879</p>
+            <p>Contact Information & Platforms:</p>
+            <p>ritazheng1011@gmail.com | rpz5210@psu.edu</p>
+            <p>(215) 596-9879</p>
           </div>
           <social-link-bar>
             <a href="https://github.com/ritazheng1011" target="_blank"
