@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <base href="/" />
@@ -7,251 +7,743 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="Description" content="Demonstration for portfolio-very-theme" />
+    <meta name="Description" content="Portfolio Site" />
 
     <style>
-      
-      :root,
-      body {
-        margin: 0;
-        font-family: var(
-          --ddd-font-base,
-          "Helvetica Neue",
-          Helvetica,
-          Arial,
-          sans-serif
-        );
-        font-size: var(--ddd-font-size-md, 16px);
-        scroll-behavior: smooth;
-        background-color: #ffe6f0; /* light blush pink */
-        color: #2b2b2b; /* dark gray text */
-        padding-top: 50px;
-      }
-      h2 {
-        scroll-margin-top: 120px;
-        margin: 0;
-        padding: 1.5rem;
-        font-size: var(--ddd-font-size-xl);
+      :root {
+        --page-max: 1100px;
+        --header-height: 72px;
+
+        --bg: #ffe6f0;
+        --text: #1f1f1f;
+        --muted: rgba(0, 0, 0, 0.66);
+
+        --card: rgba(255, 255, 255, 0.8);
+        --card-border: rgba(0, 0, 0, 0.08);
+
+        --ink: #0b1f3a;
+        --ink-2: rgba(11, 31, 58, 0.75);
       }
 
-      .about-content {
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding-top: var(--header-height);
+        background: var(--bg);
+        color: var(--text);
+
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          "Noto Sans",
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* =========================
+         FIXED TOP NAV (guaranteed)
+         ========================= */
+      .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--header-height);
+        z-index: 999999;
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 0.75rem;
+        padding: 0 1rem;
+
+        background: linear-gradient(180deg, #0b1f3a, rgba(11, 31, 58, 0.92));
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(8px);
+      }
+
+      .top-nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 850;
+        font-size: 0.98rem;
+        padding: 0.5rem 0.95rem;
+        border-radius: 999px;
+        opacity: 0.95;
+        transition:
+          transform 0.15s ease,
+          background-color 0.15s ease,
+          opacity 0.15s ease;
+      }
+
+      .top-nav a:hover {
+        background: rgba(255, 255, 255, 0.14);
+        transform: translateY(-1px);
+        opacity: 1;
+      }
+
+      .top-nav a:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.75);
+        outline-offset: 2px;
+      }
+
+      /* --- Layout helpers --- */
+      .section-wrap {
+        max-width: var(--page-max);
+        margin: 0 auto;
+        padding: 0 1.25rem 2.25rem;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 18px;
+        padding: 1.35rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        backdrop-filter: blur(7px);
+      }
+
+      /* --- Section headers (tighter spacing) --- */
+      .section-title {
+        scroll-margin-top: calc(var(--header-height) + 18px);
+        padding: 1.2rem 0 0.75rem; /* tighter than before */
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-size: 1.9rem;
+        letter-spacing: 0.2px;
+        color: var(--ink);
+        line-height: 1.15;
+      }
+
+      .section-title .subtitle {
+        margin-top: 0.45rem;
+        color: var(--ink-2);
+        font-weight: 600;
+      }
+
+      .divider {
+        height: 6px;
+        width: 68px;
+        border-radius: 999px;
+        background: rgba(11, 31, 58, 0.22);
+        margin-top: 0.75rem;
+      }
+
+      /* --- Buttons --- */
+      .btn-row {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        text-decoration: none;
+        font-weight: 850;
+        font-size: 0.98rem;
+        padding: 0.6rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+        transition:
+          transform 0.15s ease,
+          opacity 0.15s ease;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        opacity: 0.92;
+      }
+
+      .btn.primary {
+        background: var(--ink);
+        color: white;
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .btn.ghost {
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--ink);
+      }
+
+      /* --- Tags --- */
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .tag {
+        background: rgba(20, 32, 161, 0.1);
+        border: 1px solid rgba(20, 32, 161, 0.18);
+        color: rgba(0, 0, 0, 0.75);
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-weight: 850;
+        font-size: 0.9rem;
+      }
+
+      /* --- About layout --- */
+      .about-content {
+        display: grid;
+        grid-template-columns: 320px 1fr;
         gap: 2rem;
-        padding: var(--ddd-spacing-5);
-        max-width: 1000px;
-        margin: auto;
+        align-items: center;
       }
 
       .profile-pic {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
         border-radius: 50%;
-        border: 4px solid var(--ddd-theme-primary);
         object-fit: cover;
-      }
-
-      .resume-pic {
-        width: 300px;
-        height: auto;
-        border: 4px solid var(--ddd-theme-primary);
-        margin-bottom: 1rem;
-      }
-
-      .resume-bio {
-        max-width: 600px;
-        text-align: left;
-        font-size: var(--ddd-spacing-4);
-        line-height: 1.6;
+        border: 4px solid rgba(0, 0, 0, 0.08);
+        justify-self: center;
       }
 
       .bio-text {
-        max-width: 600px;
-        text-align: left;
-        font-size: var(--ddd-spacing-4);
-        line-height: 1.6;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.75;
       }
 
-      .resume,
-      .experience {
+      .bio-text p {
+        margin: 0 0 1rem;
+      }
+
+      /* --- Resume layout (better) --- */
+      .resume-grid {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .resume-pic {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        border-radius: 14px;
+        border: 4px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .resume-highlights {
+        margin: 0.75rem 0 0;
+        padding-left: 1.1rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* --- Experience (better visual) --- */
+      .exp-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .exp-item {
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        padding: 1rem 1.1rem;
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .exp-top {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: var(--ddd-spacing-5);
-        max-width: 800px;
-        margin: auto;
-        font-size: var(--ddd-spacing-4);
-        line-height: 1.6;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.5rem 0.75rem;
+        margin-bottom: 0.45rem;
       }
 
-      .contact-info,
-      .projects {
+      .exp-role {
+        font-weight: 900;
+        color: var(--ink);
+      }
+
+      .exp-org {
+        font-weight: 750;
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .exp-dates {
+        margin-left: auto;
+        font-weight: 750;
+        color: rgba(0, 0, 0, 0.55);
+      }
+
+      .exp-bullets {
+        margin: 0;
+        padding-left: 1.1rem;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      /* --- Projects --- */
+      .project-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .project-card h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--ink);
+      }
+
+      .project-card p {
+        margin: 0.55rem 0 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* --- Contact --- */
+      .contact-info {
         text-align: center;
-        margin-bottom: 1.5rem;
       }
-
       .contact-info p {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 0.5rem 0;
+        margin: 0.4rem 0;
+        font-weight: 750;
       }
 
-      .resume a {
-        font-weight: bold;
-        font-size: 1.25rem;
+      /* ---------- MEDIA QUERIES ---------- */
+      @media (min-width: 1200px) {
+        .section-title h2 {
+          font-size: 2.1rem;
+        }
+        .card {
+          padding: 1.55rem;
+        }
       }
 
-      @media (max-width: 768px) {
-        .about-content {
-          flex-direction: column;
+      @media (max-width: 960px) {
+        .about-content,
+        .resume-grid {
+          grid-template-columns: 1fr;
         }
         .profile-pic {
-          width: 200px;
-          height: 200px;
+          width: 220px;
+          height: 220px;
+        }
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+        .exp-dates {
+          margin-left: 0;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .top-nav {
+          height: auto;
+          padding: 0.75rem;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .top-nav a {
+          font-size: 0.95rem;
+          padding: 0.45rem 0.8rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .section-wrap {
+          padding: 0 1rem 2rem;
+        }
+        .section-title {
+          padding: 1rem 0 0.7rem;
+        }
+        .section-title h2 {
+          font-size: 1.65rem;
+        }
+        .card {
+          padding: 1.15rem;
+          border-radius: 16px;
         }
         .bio-text {
-          text-align: center;
+          font-size: 1rem;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .profile-pic {
+          width: 190px;
+          height: 190px;
         }
       }
     </style>
   </head>
 
   <body>
-    <portfolio-very-header></portfolio-very-header>
+    <!-- GUARANTEED HEADER -->
+    <header class="top-nav" id="topNav">
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </header>
 
     <portfolio-very-theme>
+      <!-- ABOUT -->
       <portfolio-very-screen>
-        <h2 id="1">About</h2>
-        <br></br/>
-        <br></br/>
-        <div class="about-content">
-          <img src="headshot.jpg" alt="Rita Zheng" class="profile-pic" />
-          <div class="bio-text">
-            <p>
-              Hi! My name is Rita Zheng. I'm a third-year student at Penn State
-              studying Human-Centered Design & Development. I'm passionate about
-              UI/UX and creating user-friendly and visually appealing designs. I
-              have experience in various design tools and programming languages,
-              and I'm excited and open to learn more!
-            </p>
-            <p>
-              I enjoy volunteering on campus and finding ways to give
-              back to my community. I also love playing video games and exploring the
-              latest in technology trends. One of my favorite projects was building my
-              own PC, which sparked a deeper interest in hardware and problem-solving.
-            </p>
-            <language-list></language-list>
+        <div class="section-wrap">
+          <div class="section-title" id="about">
+            <h2>About</h2>
+            <div class="subtitle">A quick intro and what I love building.</div>
+            <div class="divider"></div>
+          </div>
+
+          <div class="card">
+            <div class="about-content">
+              <img src="headshot.jpg" alt="Rita Zheng" class="profile-pic" />
+              <div class="bio-text">
+                <!-- KEEPING YOUR ABOUT ME EXACTLY -->
+                <p>
+                  Hi! My name is Rita Zheng. I'm a third-year student at Penn
+                  State studying Human-Centered Design & Development. I'm
+                  passionate about UI/UX and creating user-friendly and visually
+                  appealing designs. I have experience in various design tools
+                  and programming languages, and I'm excited and open to learn
+                  more!
+                </p>
+                <p>
+                  I enjoy volunteering on campus and finding ways to give back
+                  to my community. I also love playing video games and exploring
+                  the latest in technology trends. One of my favorite projects
+                  was building my own PC, which sparked a deeper interest in
+                  hardware and problem-solving.
+                </p>
+
+                <language-list></language-list>
+              </div>
+            </div>
           </div>
         </div>
       </portfolio-very-screen>
 
+      <!-- RESUME -->
       <portfolio-very-screen>
-        <h2 id="2">Resume</h2>
-        <div class="resume">
-          <img
-            src="./resume-AUG2025.jpg"
-            alt="Rita Zheng Resume"
-            class="resume-pic"
-          />
-          <a
-            href="./resume-AUG2025.jpg"
-            target="_blank"
-            style="color: var(--ddd-theme-accent); font-weight: bold"
-          >
-            View Resume
-          </a>
-          <p>
-            This past summer, I worked as an IT intern at David’s Bridal, where I got
-            hands-on experience in IT development, web operations, troubleshooting, and
-            supporting a variety of technical projects. I had the opportunity to work
-            closely with cross-functional teams to improve system performance and create
-            a better user experience, which gave me a deeper understanding of the IT
-            industry and helped me grow my problem-solving skills.
-          </p>
-  
-        </div>
-      </portfolio-very-screen>
-
-      <portfolio-very-screen>
-        <h2 id="3">Professional Experience</h2>
-        <div class="experience">
-          <br></br/>
-          <ul>
-            <li>
-              <strong>IT Intern – Web Operations, David’s Bridal Inc. (June 2025 – September 2025)</strong> – Assisted with website operations, content updates, and quality checks to help ensure a smooth online shopping experience.
-            </li>
-            <li>
-              <strong>Graphics Chair – Asian Student Association @ Penn State (April 2024 – Present)</strong> – Created event graphics, promotional materials, and social media content to support club activities and outreach.
-            </li>
-            <li>
-              <strong>Mentor – Society of Asian Scientists and Engineers @ Penn State (September 2024 – May 2025)</strong> – Provided guidance to student members through career advice, academic tips, and peer support.
-            </li>
-            <li>
-              <strong>Cashier – China King Restaurant (November 2022 – August 2024)</strong> – Helped customers with orders, managed transactions, and worked with team members to keep operations running smoothly.
-            </li>
-          </ul>
-        </div>
-      </portfolio-very-screen>
-
-      <portfolio-very-screen>
-        <h2 id="4">Projects</h2>
-        <div class="projects">
-          <br></br/>
-          <br></br/>
-          <br></br/>
-        
-          <p>
-            Mixology: Mock-up/Prototype for mixed drink app. [Figma, Miro, Java]
-          </p>
-          <p></p>
-          <p>
-            Home Services: Mock-up/Prototype for home improvement services app.
-            [Figma, Miro]
-          </p>
-          <p>
-            RPG Character: Unique updated RPG characters for Github Repos.
-            [VSCode, JS, HTML, CSS]
-          </p>
-          <a
-            href="https://rpg-character-peach.vercel.app/"
-            target="_blank"
-            rel="noopener"
-          >
-            RPG Project
-          </a>
-        </div>
-      </portfolio-very-screen>
-
-      <portfolio-very-screen>
-        <h2 id="5">Contact</h2>
-        <div class="projects">
-          <div class="contact-info">
-            <p>Contact Information & Platforms:</p>
-            <p>ritazheng1011@gmail.com | rpz5210@psu.edu</p>
-            <p>(215) 596-9879</p>
+        <div class="section-wrap">
+          <div class="section-title" id="resume">
+            <h2>Resume</h2>
+            <div class="subtitle">
+              Experience, skills, and what I’m working toward.
+            </div>
+            <div class="divider"></div>
           </div>
-          <social-link-bar>
-            <a href="https://github.com/ritazheng1011" target="_blank"
-              >GitHub</a
-            >
-            <a href="https://linkedin.com/in/ritazheng1011" target="_blank"
-              >LinkedIn</a
-            >
-          </social-link-bar>
+
+          <div class="card">
+            <div class="resume-grid">
+              <div>
+                <img
+                  src="./resume2026.jpg"
+                  alt="Rita Zheng Resume"
+                  class="resume-pic"
+                />
+                <div class="btn-row">
+                  <a
+                    class="btn primary"
+                    href="./resume2026.jpg"
+                    target="_blank"
+                    rel="noopener"
+                    >View Resume</a
+                  >
+                </div>
+              </div>
+
+              <div class="bio-text">
+                <p style="margin-top: 0">
+                  This past summer, I worked as an IT Intern at David’s Bridal,
+                  supporting web operations and helping improve the site’s
+                  reliability through troubleshooting, QA, and content updates.
+                </p>
+                <ul class="resume-highlights">
+                  <li>
+                    Assisted with day-to-day website maintenance and issue
+                    resolution.
+                  </li>
+                  <li>
+                    Collaborated with cross-functional partners to improve user
+                    experience and site performance.
+                  </li>
+                  <li>
+                    Strengthened problem-solving skills by working through real
+                    production issues and process improvements.
+                  </li>
+                </ul>
+                <br><br>
+                 <p>
+    Beyond my internship, I’ve built a strong foundation in UI/UX and product thinking through class projects and leadership roles. I’ve learned how to communicate design decisions clearly, collaborate with teams, and iterate based on feedback.
+  </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </portfolio-very-screen>
+
+      <!-- EXPERIENCE -->
+      <portfolio-very-screen>
+        <div class="section-wrap">
+          <div class="section-title" id="experience">
+            <h2>Professional Experience</h2>
+            <div class="subtitle">Roles, leadership, and impact.</div>
+            <div class="divider"></div>
+          </div>
+
+          <div class="card">
+            <div class="exp-grid">
+              <div class="exp-item">
+                <div class="exp-top">
+                  <div class="exp-role">IT Intern – Web Operations</div>
+                  <div class="exp-org">David’s Bridal Inc.</div>
+                  <div class="exp-dates">Jun 2025 – Sep 2025</div>
+                </div>
+                <ul class="exp-bullets">
+                  <li>
+                    Supported website operations with content updates, QA
+                    checks, and troubleshooting.
+                  </li>
+                  <li>
+                    Helped maintain a smooth online shopping experience by
+                    resolving issues quickly and accurately.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exp-item">
+                <div class="exp-top">
+                  <div class="exp-role">Graphics Chair</div>
+                  <div class="exp-org">
+                    Asian Student Association @ Penn State
+                  </div>
+                  <div class="exp-dates">Apr 2024 – Present</div>
+                </div>
+                <ul class="exp-bullets">
+                  <li>
+                    Designed event graphics, promotional materials, and social
+                    media content for club outreach.
+                  </li>
+                  <li>
+                    Maintained consistent visual style across posts, flyers, and
+                    announcements.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exp-item">
+                <div class="exp-top">
+                  <div class="exp-role">Mentor</div>
+                  <div class="exp-org">
+                    Society of Asian Scientists and Engineers
+                  </div>
+                  <div class="exp-dates">Sep 2024 – May 2025</div>
+                </div>
+                <ul class="exp-bullets">
+                  <li>
+                    Provided guidance through academic support, career advice,
+                    and mentorship check-ins.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exp-item">
+                <div class="exp-top">
+                  <div class="exp-role">Cashier</div>
+                  <div class="exp-org">China King Restaurant</div>
+                  <div class="exp-dates">Nov 2022 – Aug 2024</div>
+                </div>
+                <ul class="exp-bullets">
+                  <li>
+                    Assisted customers with orders and payments while keeping
+                    front-of-house operations organized.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </portfolio-very-screen>
+
+      <!-- PROJECTS -->
+      <portfolio-very-screen>
+        <div class="section-wrap">
+          <div class="section-title" id="projects">
+            <h2>Projects</h2>
+            <div class="subtitle">
+              Selected work across UX, prototyping, and development.
+            </div>
+            <div class="divider"></div>
+          </div>
+
+          <div class="project-grid">
+            <!-- 1) Travel Log FIRST -->
+            <div class="card project-card">
+              <h3>Travel Log</h3>
+              <p>
+                An offline-friendly travel notebook app where users can save
+                trips, write entries, and keep memories organized in one place.
+                Built with a focus on clean UI and easy navigation.
+              </p>
+              <div class="tags">
+                <span class="tag">VSCode</span><span class="tag">HTML</span
+                ><span class="tag">CSS</span><span class="tag">JavaScript</span>
+              </div>
+              <div class="btn-row">
+                <a
+                  class="btn primary"
+                  href="https://travel-notebook-mfxg.vercel.app/index.html"
+                  target="_blank"
+                  rel="noopener"
+                  >View Project</a
+                >
+              </div>
+            </div>
+
+            <!-- 2) Mixology SECOND (remove Java) -->
+            <div class="card project-card">
+              <h3>Mixology</h3>
+              <p>
+                A prototype for a mixed drink app that helps users explore
+                recipes, discover new drinks, and build a simple experience
+                around searching and browsing.
+              </p>
+              <div class="tags">
+                <span class="tag">Figma</span><span class="tag">Miro</span>
+              </div>
+              <div class="btn-row">
+                <a
+                  class="btn primary"
+                  href="https://www.figma.com/proto/yEklUmlsx9ORwD6llN5mwQ/Mixology?node-id=9-3&t=jvr3ljEo9dXSYe2y-1&starting-point-node-id=5%3A2"
+                  target="_blank"
+                  rel="noopener"
+                  >View Prototype</a
+                >
+              </div>
+            </div>
+
+            <!-- 3) RPG third -->
+            <div class="card project-card">
+              <h3>RPG Character</h3>
+              <p>
+                A web project that generates and displays RPG character updates
+                for GitHub repos, built to make character visuals and details
+                easy to view and share.
+              </p>
+              <div class="tags">
+                <span class="tag">VSCode</span
+                ><span class="tag">JavaScript</span><span class="tag">HTML</span
+                ><span class="tag">CSS</span>
+              </div>
+              <div class="btn-row">
+                <a
+                  class="btn primary"
+                  href="https://rpg-character-peach.vercel.app/"
+                  target="_blank"
+                  rel="noopener"
+                  >View Project</a
+                >
+              </div>
+            </div>
+
+            <!-- 4) Home Services fourth -->
+            <div class="card project-card">
+              <h3>Home Services</h3>
+              <p>
+                A UX prototype concept for a home improvement services app
+                focused on scheduling, service selection, and a clean booking
+                flow that reduces friction for users.
+              </p>
+              <div class="tags">
+                <span class="tag">Figma</span><span class="tag">Miro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </portfolio-very-screen>
+
+      <!-- CONTACT -->
+      <portfolio-very-screen>
+        <div class="section-wrap">
+          <div class="section-title" id="contact">
+            <h2>Contact</h2>
+            <div class="subtitle">Let’s connect.</div>
+            <div class="divider"></div>
+          </div>
+
+          <div class="card">
+  <div class="contact-info">
+    <p>Contact Information & Platforms</p>
+    <p style="font-weight:600;">ritazheng1011@gmail.com | rpz5210@psu.edu</p>
+    <p style="font-weight:600;">(215) 596-9879</p>
+
+    <div class="btn-row" style="justify-content:center; margin-top: 1rem;">
+  <a class="btn primary" href="https://www.linkedin.com/in/rita-zheng-b76b72226/" target="_blank" rel="noopener">
+    LinkedIn
+  </a>
+  <a class="btn primary" href="https://github.com/ritazheng1011" target="_blank" rel="noopener">
+    GitHub
+  </a>
+</div>
+  </div>
+</div>
       </portfolio-very-screen>
     </portfolio-very-theme>
 
+    <!-- Smooth scroll + correct header offset -->
+    <script>
+      const headerHeight = () => {
+        const h = getComputedStyle(document.documentElement)
+          .getPropertyValue("--header-height")
+          .trim();
+        return parseInt(h || "72", 10);
+      };
+
+      document.getElementById("topNav").addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        const href = a.getAttribute("href") || "";
+        if (!href.startsWith("#")) return;
+
+        e.preventDefault();
+        const id = href.slice(1);
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const y =
+          el.getBoundingClientRect().top + window.scrollY - headerHeight() - 12;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      });
+    </script>
+
+    <!-- components -->
     <script type="module" src="./portfolio-very-theme.js"></script>
-    <script type="module" src="./portfolio-very-header.js"></script>
     <script type="module" src="./portfolio-very-screen.js"></script>
     <script type="module" src="./social-link-bar.js"></script>
     <script type="module" src="./language-list.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/@haxtheweb/scroll-button/scroll-button.js"
-    ></script>
   </body>
 </html>

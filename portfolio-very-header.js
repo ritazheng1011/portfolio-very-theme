@@ -1,75 +1,113 @@
-/**
- * Copyright 2025 ritazheng1011
- * @license Apache-2.0, see LICENSE for full text.
- */
 import { LitElement, html, css } from "lit";
-import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
-export class PortfolioVeryHeader extends DDDSuper(I18NMixin(LitElement)) {
+export class PortfolioVeryHeader extends LitElement {
   static get tag() {
     return "portfolio-very-header";
   }
 
-  static get styles() {
-    return [
-      super.styles,
-      css`
-        :host {
-          display: block;
-          color: var(--ddd-theme-default-white);
-          background-color: var(--ddd-theme-accent);
-          font-family: var(--ddd-font-navigation);
-        }
+  static styles = css`
+    :host {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999999;
+      display: block;
+    }
 
-        .nav-bar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 100px;
-          z-index: 1000;
-          background-color: var(--ddd-theme-default-navy80);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+    nav {
+      height: var(--header-height, 72px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0 1rem;
 
-        .nav-bar a {
-          color: var(--ddd-theme-default-white);
-          text-decoration: none;
-          font-weight: bold;
-          font-size: 1.1rem;
-          padding: 0.5rem 1rem;
-          border-radius: 8px;
-          transition: background-color 0.2s ease-in-out;
-        }
+      background: linear-gradient(180deg, #0b1f3a, rgba(11, 31, 58, 0.92));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(8px);
+    }
 
-        .nav-bar a:hover {
-          background-color: var(--ddd-theme-default-slateGray);
-        }
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 850;
+      font-size: 0.98rem;
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      transition:
+        transform 0.15s ease,
+        background-color 0.15s ease,
+        opacity 0.15s ease;
+      opacity: 0.95;
+      cursor: pointer;
+    }
 
-        .wrapper {
-          margin-top: -60px;
-        }
-      `,
-    ];
+    a:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    a:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.75);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        height: auto;
+        padding: 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      a {
+        font-size: 0.95rem;
+        padding: 0.45rem 0.8rem;
+      }
+    }
+  `;
+
+  _scrollTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const headerH = parseInt(
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--header-height")
+        .trim() || "72",
+      10,
+    );
+
+    const y = el.getBoundingClientRect().top + window.scrollY - headerH - 12;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  }
+
+  _onNavClick(e) {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    if (!href.startsWith("#")) return;
+
+    e.preventDefault();
+    this._scrollTo(href.slice(1));
   }
 
   render() {
     return html`
-      <div class="wrapper">
-        <div class="nav-bar">
-          <a href="#1">About</a>
-          <a href="#2">Resume</a>
-          <a href="#3">Professional Experience</a>
-          <a href="#4">Projects</a>
-          <a href="#5">Contact</a>
-        </div>
-        <slot></slot>
-      </div>
+      <nav @click=${this._onNavClick} aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
     `;
   }
 }
 
-customElements.define(PortfolioVeryHeader.tag, PortfolioVeryHeader);
+if (!customElements.get(PortfolioVeryHeader.tag)) {
+  customElements.define(PortfolioVeryHeader.tag, PortfolioVeryHeader);
+}

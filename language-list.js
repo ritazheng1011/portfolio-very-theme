@@ -1,6 +1,3 @@
-/*
-  Component: language-badge-list.js
-*/
 import { LitElement, html, css } from "lit";
 
 export class LanguageList extends LitElement {
@@ -8,28 +5,30 @@ export class LanguageList extends LitElement {
     return "language-list";
   }
 
-  static get styles() {
-    return css`
-      .badges {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-top: 1rem;
-        flex-wrap: wrap;
-      }
-      .badge {
-        background-color: #1420a143;
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
-        font-weight: bold;
-        border: 1px solid #ccc;
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: block;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .badge {
+      background: rgba(20, 32, 161, 0.1);
+      border: 1px solid rgba(20, 32, 161, 0.18);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 850;
+      font-size: 0.92rem;
+      color: rgba(0, 0, 0, 0.75);
+    }
+  `;
 
   render() {
     return html`
-      <div class="badges">
+      <div class="badges" aria-label="Skills list">
         <div class="badge">Python</div>
         <div class="badge">Java</div>
         <div class="badge">SQL</div>
@@ -43,4 +42,6 @@ export class LanguageList extends LitElement {
   }
 }
 
-customElements.define(LanguageList.tag, LanguageList);
+if (!customElements.get(LanguageList.tag)) {
+  customElements.define(LanguageList.tag, LanguageList);
+}
